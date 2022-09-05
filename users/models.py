@@ -4,4 +4,5 @@ from django.contrib.auth.models import AbstractBaseUser, AbstractUser
 
 class User(AbstractUser):
     profile_pic = models.ImageField('Profile Picture', upload_to='profile_pics', blank=True)
+    bio = models.TextField('Bio', blank=True)
     
