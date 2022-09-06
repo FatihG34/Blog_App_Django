@@ -1,6 +1,6 @@
     <nav class="navbar navbar-expand-md navbar-light bg-primary text-uppercase">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Pizza</a>
+      <a class="navbar-brand text-white mx-3" href="{% url 'home' %}">Blog App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -20,20 +20,20 @@
                 {{user.username | title}}
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="{% url '' %}">Logout</a>
+                <a class="nav-link active text-white" aria-current="page" href="{% url 'logout' %}">Logout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'r' %} ">Profile</a>
+                <a class="nav-link text-white" href="">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url '' %} ">New Post</a>
+                <a class="nav-link text-white" href="">New Post</a>
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="{% url '' %}">Login</a>
+                <a class="nav-link active text-white" aria-current="page" href="{% url 'login' %}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url '' %} ">Register</a>
+                <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
             </li>
         {% endif %}
         </ul>

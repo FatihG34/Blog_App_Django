@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block blog %}
+{% comment %} <div class="row" {% endcomment %}
+    <div class="col-md-6 offset-md-3 mx-4">
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %} 
+            {{user_form.as_p}}
+            {% comment %} {{form|crispy}} {% endcomment %}
+            <button type="submit" class="btn btn-success">Register</button>
+        </form>
+    </div>
+{% comment %} </div> {% endcomment %}
+{% endblock blog %}
+    
