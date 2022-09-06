@@ -7,7 +7,7 @@ from users.forms import UserForm
 
 # Create your views here.
 
-def login(request):
+def user_login(request):
     form = AuthenticationForm(request, data=request.POST)
 
     if form.is_valid():

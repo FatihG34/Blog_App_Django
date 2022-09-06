@@ -6,18 +6,24 @@
         <span class="navbar-toggler-icon"></span>
       </button>
         <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0">
-          <li class="nav-item">
+          <li class="d-none d-md-block nav-item">
             <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="d-none d-md-block nav-item">
             <a class="nav-link text-white" href="">About</a>
           </li>
         </ul>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0 text-center">
         {% if request.user.is_authenticated %}
-            <li class="nav-item text-white">
-                {{user.username | title}}
+            <li class="nav-item text-white mx-4">
+              <span class='nav-link text-white'>{{user.username | title}}</span>
+            </li>
+            <li class="nav-item">
+              <a class="d-block d-md-none nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="d-block d-md-none nav-link text-white" href="">About</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active text-white" aria-current="page" href="{% url 'logout' %}">Logout</a>
@@ -28,7 +34,14 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="">New Post</a>
             </li>
+            
         {% else %}
+            <li class="nav-item">
+              <a class="d-block d-md-none nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="d-block d-md-none nav-link text-white" href="">About</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link active text-white" aria-current="page" href="{% url 'login' %}">Login</a>
             </li>
