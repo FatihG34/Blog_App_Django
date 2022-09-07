@@ -2,11 +2,15 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from blog.forms import BlogForm
 from django.contrib import messages
+from blog.models import Post
 
 # Create your views here.
 def home(request):
-
-    return render(request, 'blog/post_list.html',)
+    blogs = Post.objects.all()
+    context = {
+        'blogs': blogs,
+    }
+    return render(request, 'blog/post_list.html', context)
 
 @login_required(login_url='login')
 def create_post(request):
