@@ -22,7 +22,7 @@ def user_login(request):
 def user_logout(request):
     messages.success(request, "You Logout!")
     logout(request)
-    return redirect('home')
+    return render(request, 'users/logout.html')
 
 def register(request):
     form = UserForm()

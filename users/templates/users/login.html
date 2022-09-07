@@ -12,8 +12,12 @@
             {% csrf_token %} 
             {{form.as_p}}
             {% comment %} {{form|crispy}} {% endcomment %}
-            <button type="submit" class="btn btn-success">Login</button>
+            <button type="submit" class="btn btn-success">Login</button> <a href="">Forgat Password</a>
         </form>
+
+        <div class='mt-3'>
+            Need an account? <a href="{% url 'register' %} " class='text-decoration-none'>Sign Up Now</a>
+        </div>
     </div>
 </div>
 {% endblock blog %}
