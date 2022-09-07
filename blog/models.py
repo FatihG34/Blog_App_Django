@@ -12,4 +12,7 @@ class Post(models.Model):
     last_updated = models.DateTimeField('Last Updated Date', auto_now=True)
     status = models.CharField('Status', max_length=50)
     slug = models.IntegerField('Slug')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.title
