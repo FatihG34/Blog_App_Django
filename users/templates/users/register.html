@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %} 
 {% block blog %}
-<div class=" container row mx-5 bg-info">
-    <div class="col-md-6 offset-md-3 mx-4">
+<div class=" container row mt-2 mx-auto bg-light">
+    <div class="col-md-6 offset-md-3">
         <form action="{% url 'register' %}" method="post" class='p-4'>
             {% csrf_token %} 
-            {{user_form.as_p}}
-            {% comment %} {{form|crispy}} {% endcomment %}
+            {{user_form|crispy}}
             <button type="submit" class="btn btn-success mb-3">Register</button>
         </form>
-         <div class='m-3'>
+         <div class='m-2'>
             Already have an account ? <a href="{% url 'login' %} " class='text-decoration-none'>Sign in</a>
         </div>
     </div>
