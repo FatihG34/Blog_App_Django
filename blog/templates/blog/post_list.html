@@ -4,7 +4,7 @@
 <div class="container d-flex flex-wrap gap-5 my-3">
         {% for blog in blogs %}
             <div class="card" style="width: 18rem;">
-                <img width='200' src="{{blog.image}}" class="card-img-top" alt="{{blog.title}}" />
+                <img src="{{blog.image}}" class="card-img-top img-fluid" alt="{{blog.title}}" />
                 <div class="card-body">
                     <h5 class="card-title">{{blog.title}}</h5>
                     <p class="card-text">
@@ -15,11 +15,15 @@
                     <small class="text-muted">{{blog.last_updated}} </small>
                 </div>
                 <div>
+                    {% if request.user == blog.user %}
                     <div>
-                        <a href="" class="btn btn-primary">Detail</a>
+                        <a href="{% url 'update' blog.id %} " class="btn btn-primary">Detail</a>
                     </div>
-                    <i class="fa-regular fa-heart" title='Click for Like'></i>
-                    <i class="fa-regular fa-message" title='Click to Add Comment'></i>
+                    {% endif %}
+                    <div>
+                        <i class="fa-regular fa-heart" title='Click for Like'></i>
+                        <i class="fa-regular fa-message" title='Click to Add Comment'></i>
+                    </div>
                 </div>
             </div>
         {% endfor %}

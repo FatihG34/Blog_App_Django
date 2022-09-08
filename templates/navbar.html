@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-md navbar-light bg-primary text-uppercase">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary text-uppercase">
     <div class="container-fluid">
       <a class="navbar-brand text-white mx-3" href="{% url 'home' %}">Blog App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -7,46 +7,46 @@
       </button>
         <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0">
           <li class="d-none d-md-block nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
           <li class="d-none d-md-block nav-item">
-            <a class="nav-link text-white" href="">About</a>
+            <a class="nav-link" href="">About</a>
           </li>
         </ul>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0 text-center">
         {% if request.user.is_authenticated %}
-            <li class="nav-item text-white mx-4">
-              <span class='nav-link text-white'>{{user.username | title}}</span>
+            <li class="nav-item mx-4">
+              <span class='nav-link'>{{user.username | title}}</span>
             </li>
             <li class="nav-item">
-              <a class="d-block d-md-none nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+              <a class="d-block d-md-none nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="d-block d-md-none nav-link text-white" href="">About</a>
+              <a class="d-block d-md-none nav-link" href="">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="">Profile</a>
+                <a class="nav-link" href="">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'create' %}">New Post</a>
+                <a class="nav-link" href="{% url 'create' %}">New Post</a>
             </li>
             
         {% else %}
             <li class="nav-item">
-              <a class="d-block d-md-none nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+              <a class="d-block d-md-none nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="d-block d-md-none nav-link text-white" href="">About</a>
+              <a class="d-block d-md-none nav-link" href="">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="{% url 'login' %}">Login</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
             </li>
         {% endif %}
         </ul>

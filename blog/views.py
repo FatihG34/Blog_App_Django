@@ -27,3 +27,18 @@ def create_post(request):
         'form': form
     }
     return render(request, 'blog/post_create.html', context)
+
+
+@login_required(login_url='login')
+def update_post(request,id):
+    blogpost = Post.objects.get(id=id)
+    form = BlogForm(instance=blogpost)
+    if request.method =='POST':
+        form = BlogForm(request.POST, instance=blogpost)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    context={
+        'form':form
+    }
+    return render(request, 'blog/post_update.html', context)

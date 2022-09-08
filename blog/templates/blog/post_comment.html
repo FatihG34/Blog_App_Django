@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block blog %}
+    <div class=" container row mt-2 mx-auto bg-light">
+        <div class="card my-1 mx-auto" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                <img src="{{blogpost.image}}" class="img-fluid rounded-start" alt="{{blogpost.title}}">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-6 offset-md-3">
+        <form action="{% url 'create' %}" method="post" class='p-4'>
+            <h2>Update Blog Post</h2>
+            {% csrf_token %} 
+            {% comment %} {{form|crispy}} {% endcomment %}
+            <button type="submit" class="btn btn-success my-3">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock blog %}
