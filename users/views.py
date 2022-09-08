@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
-
+from .models import User
 from users.forms import UserForm
 
 # Create your views here.
@@ -36,3 +36,17 @@ def register(request):
         'user_form': form
     }
     return render(request, 'users/register.html', context)
+
+def profile(request, id):
+    logineduser = User.objects.get(id = id)
+    form = UserForm(instance=logineduser)
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {
+        'user':logineduser,
+        'form':form
+    }
+    return render(request, 'users/profile.html', context)
