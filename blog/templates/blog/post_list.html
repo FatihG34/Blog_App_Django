@@ -1,3 +1,5 @@
+{% load static %}
+
 {% extends 'base.html' %} 
 {% block blog %} 
 {% comment %} {{blogs}} {% endcomment %}
@@ -6,26 +8,29 @@
             <div class="card" style="width: 18rem;">
                 <img src="{{blog.image}}" class="card-img-top img-fluid" alt="{{blog.title}}" />
                 <div class="card-body">
-                    <h5 class="card-title">{{blog.title}}</h5>
+                   <a href="{% url 'update' blog.id %}" class='text-decoration-none'><h5 class="card-title">{{blog.title}}</h5></a>
                     <p class="card-text">
                         {{blog.content|truncatechars:200}}
                     </p>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">{{blog.last_updated}} </small>
+                <div class='d-flex justify-content-evenly w-50'>
+                    <div title='Click for Like'>
+                        <i class="fa-regular fa-heart" ></i> <span class='like-click'>1</span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-eye"></i> <span class='seen-click'>1</span>
+                    </div>
+                    <div title='Click to Add Comment'>
+                        <i class="fa-regular fa-message" ></i> <span class='comment-click'>1</span>
+                    </div>
                 </div>
-                <div>
-                    {% if request.user == blog.user %}
-                    <div>
-                        <a href="{% url 'update' blog.id %} " class="btn btn-primary">Detail</a>
-                    </div>
-                    {% endif %}
-                    <div>
-                        <i class="fa-regular fa-heart" title='Click for Like'></i>
-                        <i class="fa-regular fa-message" title='Click to Add Comment'></i>
-                    </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{blog.last_updated}}</small>
                 </div>
             </div>
         {% endfor %}
 </div>
 {% endblock blog %}
+{% block js_files %}
+<script src="{% static 'blog/script/app.js' %} "></script>
+{% endblock js_files %} 

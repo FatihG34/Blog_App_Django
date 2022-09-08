@@ -3,8 +3,23 @@
 {% block blog %}
     <div class=" container row mt-2 mx-auto bg-light">
     <div class="col-md-6 offset-md-3">
-        <form action="{% url 'create' %}" method="post" class='p-4'>
+        <div class='container-fluid text-center'>
             <h2>Update Blog Post</h2>
+            <img src="{{blogpost.image}} " class="card-img-top w-50" alt="post_image">
+        <h2 class='card-title text-start'>{{blogpost.title}} </h2>
+        <div class='d-flex justify-content-evenly w-50 mt-3'>
+            <div title='Click for Like'>
+                <i class="fa-regular fa-heart" ></i> <span class='like-click'>1</span>
+            </div>
+            <div>
+            <i class="fa-solid fa-eye"></i> <span class='seen-click'>1</span>
+            </div>
+            <div title='Click to Add Comment'>
+            <i class="fa-regular fa-message" ></i> <span class='comment-click'>1</span>
+            </div>
+        </div>
+    </div>
+        <form action="{% url 'create' %}" method="post" class='p-4'>
             {% csrf_token %} 
             {{update_form|crispy}}
             <button type="submit" class="btn btn-success my-3">Update</button>
@@ -12,4 +27,7 @@
     </div>
 </div>
 {% endblock blog %}
-    
+
+{% comment %} {% block js_files %}
+<script src="{% static 'blog/script/app.js' %} "></script>
+{% endblock js_files %}  {% endcomment %}
