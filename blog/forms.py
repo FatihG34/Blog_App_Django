@@ -6,4 +6,4 @@ class BlogForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
-        exclude = ['user', 'slug']
+        exclude = ['user']

@@ -39,6 +39,6 @@ def update_post(request,id):
             form.save()
             return redirect("home")
     context={
-        'form':form
+        'update_form':form
     }
     return render(request, 'blog/post_update.html', context)

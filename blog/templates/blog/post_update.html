@@ -6,7 +6,7 @@
         <form action="{% url 'create' %}" method="post" class='p-4'>
             <h2>Update Blog Post</h2>
             {% csrf_token %} 
-            {{form|crispy}}
+            {{update_form|crispy}}
             <button type="submit" class="btn btn-success my-3">Update</button>
         </form>
     </div>

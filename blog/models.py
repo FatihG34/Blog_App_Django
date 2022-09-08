@@ -12,14 +12,14 @@ class Post(models.Model):
     publish_date = models.DateTimeField('Publish Date', auto_now_add=True)
     last_updated = models.DateTimeField('Last Updated Date', auto_now=True)
     status = models.CharField('Status', max_length=50)
-    slug = models.SlugField(null=False,unique=True,db_index=True, blank=True)
+    slug = models.SlugField(null=False,unique=False,db_index=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        slugify(self.title + self.user)
+        slugify(self.title)
         super().save(*args, **kwargs)
 
 class Category(models.Model):
