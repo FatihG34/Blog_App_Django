@@ -33,7 +33,7 @@ class Comment(models.Model):
     content = models.TextField()
     time_stamp = models.DateTimeField('Time, comment added', auto_now_add=False)
     postcomment = models.ForeignKey(Post, on_delete=models.CASCADE)
-    post_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    post_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Added comment at {self.time_stamp} '
@@ -41,7 +41,8 @@ class Comment(models.Model):
 class Like(models.Model):
     like = models.BooleanField('Like')
     post_like = models.ForeignKey(Post, on_delete=models.CASCADE)
-    like_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    like_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
 
 class Post_view(models.Model):
     view_time = models.DateTimeField('View Time', auto_now_add=False)
