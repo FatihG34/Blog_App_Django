@@ -29,7 +29,7 @@ def create_post(request):
     return render(request, 'blog/post_create.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def update_post(request,id):
     blogpost = Post.objects.get(id=id)
     form = BlogForm(instance=blogpost)
