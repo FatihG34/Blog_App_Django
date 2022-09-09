@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} 
 {% block blog %}
+{{user}}
+{{user.profile_pic}}
 <div class=" container row mt-2 mx-auto bg-light">
     <div class="media">
         <img class="rounded-circle account-img" src="{{user.profile_pic}}" alt="{{user.username}}">
