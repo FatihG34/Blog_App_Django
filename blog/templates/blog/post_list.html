@@ -1,12 +1,12 @@
+{% extends 'base.html' %} 
 {% load static %}
 
-{% extends 'base.html' %} 
 {% block blog %} 
 {% comment %} {{blogs}} {% endcomment %}
 <div class="container d-flex flex-wrap gap-5 my-3">
         {% for blog in blogs %}
             <div class="card" style="width: 18rem;">
-                <img src="{{blog.image}}" class="card-img-top img-fluid" alt="{{blog.title}}" />
+                    <img src="{{blog.image}}" class="card-img-top img-fluid h-50" alt="{{blog.title}}" />
                 <div class="card-body">
                    <a href="{% url 'update' blog.id %}" class='text-decoration-none'><h5 class="card-title">{{blog.title}}</h5></a>
                     <p class="card-text">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">{{blog.last_updated}}</small>
+                    <small class="text-muted">Last updated at {{blog.last_updated}}</small>
                 </div>
             </div>
         {% endfor %}

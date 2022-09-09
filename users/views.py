@@ -28,10 +28,10 @@ def register(request):
     form = UserForm()
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES)
-        user = form.save()
-
-        login(request, user)
-        return redirect('home')
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
     context = {
         'user_form': form
     }
