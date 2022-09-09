@@ -9,6 +9,9 @@
         <div class="media-body">
             <h2 class="account-heading">{{user.username}}</h2>
             <p class="text-secondary">{{user.email}}</p>
+             <div>
+                <h5>If you want to change password <a href="{% url 'password_change' %}">Click here</a> 👈🏻</h5>
+             </div>
         </div>
     </div>
     {% comment %} <div class="col card my-1">

@@ -37,6 +37,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    #my apps 👇🏻
+    "users",
+    # my apps 👆🏻
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,7 +51,7 @@ INSTALLED_APPS = [
 
     # my_apps
     "blog",
-    "users",
+
 ]
 
 MIDDLEWARE = [
