@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from blog.forms import BlogForm
+from blog.forms import BlogForm, CommentForm
 from django.contrib import messages
-from blog.models import Post
+from blog.models import Comment, Post
 
 # Create your views here.
 def home(request):
@@ -44,3 +44,19 @@ def update_post(request,id):
     }
     return render(request, 'blog/post_update.html', context)
 
+def comment(request,id):
+    blogpost = Post.objects.get(id=id)
+    print(blogpost.id)
+    comment_post = Comment.objects.filter(id=blogpost.id)
+    comment_form = CommentForm()
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_form.save()
+            
+    context = {
+        'blogpost': blogpost,
+        'comment_post': comment_post,
+        'comment_form': comment_form
+    }
+    return render(request, 'blog/post_comment.html', context)

@@ -50,3 +50,4 @@ def profile(request, id):
         'form':form
     }
     return render(request, 'users/profile.html', context)
+    

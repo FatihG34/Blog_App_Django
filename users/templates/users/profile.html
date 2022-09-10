@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %} 
 {% block blog %}
-{{user}}
-{{user.profile_pic}}
-<div class=" container row mt-2 mx-auto bg-light">
+
+{% if user %}
+    <div class=" container row mt-2 mx-auto bg-light">
     <div class="media">
         <img class="rounded-circle account-img" src="{{user.profile_pic}}" alt="{{user.username}}">
         <div class="media-body">
@@ -19,11 +19,23 @@
         <h2>{{user.username}} </h2>
     </div> {% endcomment %}
     <div class="col-md-6 offset-md-3">
-        <form action="{% url 'register' %}" method="post" class='p-4'>
+        <form action="" method="post" class='p-4'>
             {% csrf_token %} 
-            {{form|crispy}}
+            {{crispy}}
+            {{form.username}}
+            {{form.email}}
+            {{form.profile_pic}}
+            {{form.bio}}
+
             <button type="submit" class="btn btn-success mb-3">Update</button>
         </form>
     </div>
 </div>
+{% else %}
+    <div class="container">
+        <h1>User not found</h1>
+    </div>
+{% endif %}
+    
+
 {% endblock blog %}

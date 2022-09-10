@@ -31,7 +31,6 @@ class Post(models.Model):
     slug = models.SlugField(null=False, unique=True, db_index=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    like = models.ForeignKey(Like, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -44,12 +43,12 @@ class Post(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     time_stamp = models.DateTimeField(
-        'Time, comment added', auto_now_add=False)
-    postcomment = models.ForeignKey(Post, on_delete=models.CASCADE)
+        'Time, comment added', auto_now_add=True)
+    postcomment = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     post_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Added comment at {self.time_stamp} '
+        return f'Added comment at {self.time_stamp} by {self.post_user} '
 
 
 
