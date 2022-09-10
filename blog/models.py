@@ -13,6 +13,10 @@ class Category(models.Model):
         return self.name
 
 
+class Like(models.Model):
+    like = models.BooleanField('Like')
+    post_like = models.ForeignKey(User, on_delete=models.CASCADE)
+
 class Post(models.Model):
     STATUS = [
         ('Draft', 'Draft'),
@@ -27,6 +31,7 @@ class Post(models.Model):
     slug = models.SlugField(null=False, unique=True, db_index=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    like = models.ForeignKey(Like, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -46,12 +51,6 @@ class Comment(models.Model):
     def __str__(self):
         return f'Added comment at {self.time_stamp} '
 
-
-class Like(models.Model):
-    like = models.BooleanField('Like')
-    post_like = models.ForeignKey(Post, on_delete=models.CASCADE)
-    like_user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
 
 
 class Post_view(models.Model):
