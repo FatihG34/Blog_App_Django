@@ -4,6 +4,7 @@
 {% block blog %} 
 {% comment %} {{blogs}} {% endcomment %}
 <div class="container d-flex flex-wrap gap-5 my-3">
+    {% if blogs %}       
         {% for blog in blogs %}
             <div class="card" style="width: 18rem;">
                     <img src="{{blog.image}}" class="card-img-top img-fluid h-50" alt="{{blog.title}}" />
@@ -29,6 +30,12 @@
                 </div>
             </div>
         {% endfor %}
+    {% else %}
+    <div class="container">
+        <h1>Any Post not exist to show !!!</h1>
+    </div>
+    
+    {% endif %}
 </div>
 {% endblock blog %}
 {% block js_files %}
