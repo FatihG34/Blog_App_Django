@@ -3,8 +3,6 @@ from users.models import User
 from django.utils.text import slugify
 
 # Create your models here.
-
-
 class Category(models.Model):
     name = models.CharField('Category Title', max_length=50)
     # post = models.ForeignKey(Post, on_delete=models.CASCADE)
