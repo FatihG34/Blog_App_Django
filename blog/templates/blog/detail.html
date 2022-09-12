@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block blog %}
+    <div class=" container row mt-2 mx-auto bg-light">
+        <div class="card my-1 mx-auto" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                <img src="{{post_object.image}}" class="img-fluid" alt="{{post_object.title}}">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{post_object.title}}</h5>
+                    <p class="card-text">{{post_object.content}} </p>
+                    <p class="card-text"><small class="text-muted">{{post_object.last_updated}} </small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='text-center p-4'>
+        <button class='btn btn-danger mx-2'>Delete Post</button>
+        <a href='' class='btn btn-warning'>Update Post</a>
+        {% comment %} <a href='{% url "blog:update" %}' class='btn btn-warning'>Update Post</a> {% endcomment %}
+    </div>
+{% endblock blog %}

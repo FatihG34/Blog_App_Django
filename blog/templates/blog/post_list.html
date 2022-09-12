@@ -9,13 +9,7 @@
             <div class="card" style="width: 18rem;">
                     <img src="{{blogpost.image}}" class="card-img-top img-fluid h-50" alt="{{blogpost.title}}" />
                 <div class="card-body">  
-                    {% if blogpost.user.id == request.user.id %}
-                        <a href="{% url 'blog:update' blogpost.id %}" class='text-decoration-none'><h5 class="card-title">{{blogpost.title}}</h5></a>
-                    {% else %}
-                        <a href="{% url 'blog:comment' blogpost.id %}" class='text-decoration-none'><h5 class="card-title">{{blogpost.title}}</h5></a>
-                    {% endif %}
-                        
-
+                        <a href="{% url 'blog:detail' blogpost.slug %}" class='text-decoration-none'><h5 class="card-title">{{blogpost.title}}</h5></a>                      
                     <p class="card-text">
                         {{blogpost.content|truncatechars:200}}
                     </p>
