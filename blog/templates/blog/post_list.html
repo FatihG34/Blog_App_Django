@@ -5,19 +5,19 @@
 {% comment %} {{blogs}} {% endcomment %}
 <div class="container d-flex flex-wrap gap-5 my-3">
     {% if blogs %}       
-        {% for blog in blogs %}
+        {% for blogpost in blogs %}
             <div class="card" style="width: 18rem;">
-                    <img src="{{blog.image}}" class="card-img-top img-fluid h-50" alt="{{blog.title}}" />
+                    <img src="{{blogpost.image}}" class="card-img-top img-fluid h-50" alt="{{blogpost.title}}" />
                 <div class="card-body">  
-                    {% if blog.user.id == request.user.id %}
-                        <a href="{% url 'update' blog.id %}" class='text-decoration-none'><h5 class="card-title">{{blog.title}}</h5></a>
+                    {% if blogpost.user.id == request.user.id %}
+                        <a href="{% url 'blog:update' blogpost.id %}" class='text-decoration-none'><h5 class="card-title">{{blogpost.title}}</h5></a>
                     {% else %}
-                        <a href="{% url 'comment' blog.id %}" class='text-decoration-none'><h5 class="card-title">{{blog.title}}</h5></a>
+                        <a href="{% url 'blog:comment' blogpost.id %}" class='text-decoration-none'><h5 class="card-title">{{blogpost.title}}</h5></a>
                     {% endif %}
                         
 
                     <p class="card-text">
-                        {{blog.content|truncatechars:200}}
+                        {{blogpost.content|truncatechars:200}}
                     </p>
                 </div>
                 <div class='d-flex justify-content-evenly w-50'>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Last updated at {{blog.last_updated}}</small>
+                    <small class="text-muted">Last updated at {{blogpost.last_updated}}</small>
                 </div>
             </div>
         {% endfor %}

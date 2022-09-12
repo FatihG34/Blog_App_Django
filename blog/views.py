@@ -19,10 +19,10 @@ def create_post(request):
         form = BlogForm(request.POST)
         if form.is_valid():
             blog = form.save(commit=False)
-            blog.user = request.user
+            blog.author = request.user
             blog.save()
             messages.success(request, "Blog created successfully 👏🏻")
-            redirect('home')
+            redirect('blog:home')
     context={
         'form': form
     }
