@@ -37,8 +37,18 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title + " " + self.author.username)
         super().save(*args, **kwargs)
+
     class Meta:
         verbose_name_plural = "Post"
+
+    def view_count(self):
+        return self.post_view_set.all().count()
+
+    def like_count(self):
+        return self.like_set.all().count()
+
+    def comment_count(self):
+        return self.comment_set.all().count()
 
 
 class Like(models.Model):
@@ -46,12 +56,12 @@ class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.useer.username
+        return self.user.username
 
 
 class Comment(models.Model):
     content = models.TextField()
-    time_stamp = models.DateTimeField( auto_now_add=True)
+    time_stamp = models.DateTimeField(auto_now_add=True)
     postcomment = models.ForeignKey(Post, on_delete=models.CASCADE)
     post_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
