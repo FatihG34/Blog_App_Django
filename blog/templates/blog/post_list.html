@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Last updated at {{blogpost.last_updated}}</small>
+                    <small class="text-muted">Last updated {{blogpost.last_updated|timesince}} ago</small>
                 </div>
             </div>
         {% endfor %}
