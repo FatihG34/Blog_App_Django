@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from blog.forms import BlogForm, CommentForm
 from django.contrib import messages
 from blog.models import Comment, Post
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -53,6 +54,16 @@ def update_post(request, slug):
         'update_form': form
     }
     return render(request, 'blog/post_update.html', context)
+
+def post_delete(request, slug):
+    blogpost = get_object_or_404(Post,  slug=slug)
+    if request.method == 'POST':
+        blogpost.delete()
+        return redirect("blog:home")
+    context = {
+        "blogpost": blogpost
+    }
+    return render(request, 'blog/post_delete.html', context)
 
 
 def comment(request,  slug):

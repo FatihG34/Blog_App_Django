@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block blog %}
-    
+<div class="container text-center">
+    <h3 class='m-5 p-4'>Do you want to delete {{blogpost}} post ?</h3>
+    <h3 class='m-5 p-4'>Are you sure?</h3>
+    <form method='post'>
+        {% csrf_token %}
+        <a href="{% url 'blog:home' %}" class='btn btn-warning' >Cancel</a>
+        <input type="submit" value="Yes, I'm Sure. Delete" class='btn btn-danger'>
+    </form>
+</div>
 {% endblock blog %}
     
