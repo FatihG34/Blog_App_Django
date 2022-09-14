@@ -1,15 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from blog.forms import BlogForm, CommentForm
 from django.contrib import messages
-from blog.models import Comment, Post
-from django.shortcuts import get_object_or_404
+from blog.models import Comment, Like, Post
 
 # Create your views here.
 
 
 def home(request):
-    blogs = Post.objects.all()
+    blogs = Post.objects.filter(status="Published")
     context = {
         'blogs': blogs,
     }
@@ -20,7 +19,7 @@ def home(request):
 def create_post(request):
     form = BlogForm()
     if request.method == 'POST':
-        form = BlogForm(request.POST)
+        form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
             blog = form.save(commit=False)
             blog.author = request.user
@@ -35,20 +34,28 @@ def create_post(request):
 
 @login_required(login_url='login')
 def detail(request, slug):
-    objct = Post.objects.get(slug=slug)
+    objct = get_object_or_404(Post,  slug=slug)
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.user = request.user
+        comment.post = objct
+        comment.save()
+        return redirect("blog:detail", slug=slug)
     context = {
-        'post_object': objct
+        'post_object': objct,
+        "form":form
     }
     return render(request, 'blog/detail.html', context)
 
 
 @login_required(login_url='login')
 def update_post(request, slug):
-    blogpost = Post.objects.get(slug=slug)
+    blogpost = get_object_or_404(Post, slug=slug)
     form = BlogForm(request.POST or None, request.FILES or None, instance=blogpost)
     if form.is_valid():
         form.save()
-        return redirect("home")
+        return redirect("blog:home")
     context = {
         'blogpost': blogpost,
         'update_form': form
@@ -64,6 +71,16 @@ def post_delete(request, slug):
         "blogpost": blogpost
     }
     return render(request, 'blog/post_delete.html', context)
+
+def like(request, slug):
+    if request.method == "POST":
+        obj = get_object_or_404(Post, slug=slug)
+        like_qs = Like.objects.filter(user=request.user, post=obj)
+        if like_qs:
+            like_qs[0].delete()
+        else:
+            Like.objects.create(user=request.user, post=obj)
+        return redirect("blog:detail", slug=slug)
 
 
 def comment(request,  slug):

@@ -50,6 +50,9 @@ class Post(models.Model):
     def comment_count(self):
         return self.comment_set.all().count()
 
+    def comments(self):
+        return self.comment_set.all()
+
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -62,8 +65,8 @@ class Like(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     time_stamp = models.DateTimeField(auto_now_add=True)
-    postcomment = models.ForeignKey(Post, on_delete=models.CASCADE)
-    post_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Added comment by {self.post_user.username}'
