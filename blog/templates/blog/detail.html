@@ -15,7 +15,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="post">
                 <input type="hidden" name="user">
-                <button type="submit"><i class="fa-regular fa-heart" ></i></button> {{post_object.like_count}}
+                <button type="submit" class="btn-close-white"><i class="fa-regular fa-heart"></i></button> {{post_object.like_count}}
             </form>
         </div>
         <div class="container w-50">
@@ -27,7 +27,7 @@
         </div>
         {% for comment in post_object.comments %}
         <div class="container w-50 border-bottom my-2">
-            <h5>Comment by {{comment.user}} at {{comment.time_stamp|timesince}} ago</h5>
+            <h6>Comment by {{comment.user}} at {{comment.time_stamp|timesince}} ago</h6>
             <p>{{comment.content}} </p>              
         </div>
         {% endfor %}
