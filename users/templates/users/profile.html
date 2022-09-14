@@ -3,10 +3,14 @@
 {% block blog %}
 
 {% if user %}
-    <div class=" container row mt-2 mx-auto bg-light">
-    <div class="media">
+    <div class=" container d-flex justify-content-between align-content-center mt-2 mx-auto bg-light">
+    <div class="container media w-50 m-2">
+        {% if user.profile_pic %}
         <img class="rounded-circle account-img" src="{{user.profile_pic.url}}" alt="{{user.username}}">
-        <div class="media-body">
+        {% else %}
+        <img class="rounded-circle account-img w-25" src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photo.png" alt="{{user.username}}">
+        {% endif %}
+        <div class="media-body m-2">
             <h2 class="account-heading">{{user.username}}</h2>
             <p class="text-secondary">{{user.email}}</p>
              <div>
@@ -14,11 +18,7 @@
              </div>
         </div>
     </div>
-    {% comment %} <div class="col card my-1">
-        <img src="{{user.image}}" alt="{{user.username}}" class="class="rounded-circle account-img"">
-        <h2>{{user.username}} </h2>
-    </div> {% endcomment %}
-    <div class="col-md-6 offset-md-3">
+    <div class="offset-md-3 w-50">
         <form action="" method="post" class='p-4' enctype='multipart/form-data'>
             {% csrf_token %} 
             {{crispy}}
@@ -36,6 +36,4 @@
         <h1>User not found</h1>
     </div>
 {% endif %}
-    
-
 {% endblock blog %}
