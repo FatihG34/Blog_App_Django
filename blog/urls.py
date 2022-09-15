@@ -1,5 +1,7 @@
 from django.urls import path
-from blog.views import comment, create_post, home, like, post_delete, update_post, detail
+from blog.views import (
+    # comment, 
+    create_post, home, like, post_delete, update_post, detail)
 
 app_name='blog'
 urlpatterns = [

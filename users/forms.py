@@ -25,3 +25,13 @@ class UserForm(UserCreationForm):
             'bio' :forms.Textarea(attrs={'class':'form-control row mb-3', 'placeholder':'Short Biography', 'rows':6}),
             'password': forms.PasswordInput(attrs={'class':'form-control row mb-3'})
         }
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = {
+            "username",
+            "email",
+            "profile_pic",
+            "bio"
+        }

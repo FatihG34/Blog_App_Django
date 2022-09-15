@@ -31,5 +31,11 @@
             <p>{{comment.content}} </p>              
         </div>
         {% endfor %}
+        {% if request.user == post_object.author %}
+        <div class="container text-center">
+            <a href="{% url 'blog:delete' post_object.slug %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'blog:update' post_object.slug %}" class="btn btn-success">Update</a>
+        </div>
+        {% endif %}
     </div>
 {% endblock blog %}

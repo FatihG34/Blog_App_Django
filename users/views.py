@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from .models import User
-from users.forms import UserForm
+from users.forms import ProfileForm, UserForm
 
 # Create your views here.
 
@@ -39,9 +39,9 @@ def register(request):
 
 def profile(request, id):
     logineduser = User.objects.get(id = id)
-    form = UserForm(instance=logineduser)
+    form = ProfileForm(instance=logineduser)
     if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES, instance=logineduser)
         if form.is_valid():
             form.save()
             return redirect('home')

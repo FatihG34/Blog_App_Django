@@ -3,17 +3,17 @@
 {% block blog %}
 
 {% if user %}
-    <div class=" container d-flex justify-content-between align-content-center mt-2 mx-auto bg-light">
-    <div class="container media w-50 m-2">
+    <div class=" container d-flex flex-column justify-content-center align-content-center mt-2 mx-auto bg-light">
+    <div class="offset-md-3 w-50 text-center">
         {% if user.profile_pic %}
-        <img class="rounded-circle account-img" src="{{user.profile_pic.url}}" alt="{{user.username}}">
+        <img class="rounded-circle account-img w-50" src="{{user.profile_pic.url}}" alt="{{user.username}}">
         {% else %}
         <img class="rounded-circle account-img w-25" src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photo.png" alt="{{user.username}}">
         {% endif %}
         <div class="media-body m-2">
             <h2 class="account-heading">{{user.username}}</h2>
             <p class="text-secondary">{{user.email}}</p>
-             <div>
+             <div class="text-start">
                 <h5>If you want to change password <a href="{% url 'password_change' %}">Click here</a> 👈🏻</h5>
              </div>
         </div>
@@ -21,13 +21,8 @@
     <div class="offset-md-3 w-50">
         <form action="" method="post" class='p-4' enctype='multipart/form-data'>
             {% csrf_token %} 
-            {{crispy}}
-            {{form.username}}
-            {{form.email}}
-            {{form.profile_pic}}
-            {{form.bio}}
-
-            <button type="submit" class="btn btn-success mb-3">Update</button>
+            {{form|crispy}}
+            <button type="submit" class="btn btn-success my-3 w-50">Update</button>
         </form>
     </div>
 </div>
