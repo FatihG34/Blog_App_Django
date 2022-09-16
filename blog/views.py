@@ -36,8 +36,8 @@ def create_post(request):
 def detail(request, slug):
     objct = get_object_or_404(Post,  slug=slug)
     form = CommentForm(request.POST or None)
-    # if request.user.is_authenticated:
-    #     Post_view.objects.get_or_create(user=request.user, post=objct)
+    if request.user.is_authenticated:
+        Post_view.objects.get_or_create(user=request.user, post=objct)
     if form.is_valid():
         comment = form.save(commit=False)
         comment.user = request.user
@@ -66,10 +66,14 @@ def update_post(request, slug):
     return render(request, 'blog/post_update.html', context)
 
 
+@login_required(login_url='login')
 def post_delete(request, slug):
     blogpost = get_object_or_404(Post,  slug=slug)
-    if request.method == 'POST':
-        blogpost.delete()
+    if blogpost.author == request.user:
+        if request.method == 'POST':
+            blogpost.delete()
+            return redirect("blog:home")
+    else:
         return redirect("blog:home")
     context = {
         "blogpost": blogpost
@@ -77,6 +81,7 @@ def post_delete(request, slug):
     return render(request, 'blog/post_delete.html', context)
 
 
+@login_required(login_url='login')
 def like(request, slug):
     if request.method == "POST":
         obj = get_object_or_404(Post, slug=slug)

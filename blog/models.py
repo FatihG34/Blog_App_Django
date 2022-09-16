@@ -73,7 +73,7 @@ class Comment(models.Model):
 
 
 class Post_view(models.Model):
-    view_time = models.DateTimeField('View Time', auto_now_add=False,unique=True)
+    view_time = models.DateTimeField('View Time', auto_now_add=True,unique=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
