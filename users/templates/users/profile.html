@@ -14,11 +14,12 @@
             <h2 class="account-heading">{{user.username}}</h2>
             <p class="text-secondary">{{user.email}}</p>
              <div class="text-start">
-                <h5>If you want to change password <a href="{% url 'password_change' %}">Click here</a> 👈🏻</h5>
+                <h3>If you want to change password <a href="{% url 'password_change' %}">Click here</a> 👈🏻</h3>
              </div>
         </div>
     </div>
-    <div class="offset-md-3 w-50">
+    <div class="offset-md-3 w-50 mt-2">
+        <h3 class="ms-2">To Update Your Info, Fill This Form</h3>
         <form action="" method="post" class='p-4' enctype='multipart/form-data'>
             {% csrf_token %} 
             {{form|crispy}}
