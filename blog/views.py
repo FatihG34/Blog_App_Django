@@ -15,7 +15,7 @@ def home(request):
     return render(request, 'blog/post_list.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def create_post(request):
     form = BlogForm()
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def create_post(request):
     return render(request, 'blog/post_create.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def detail(request, slug):
     objct = get_object_or_404(Post,  slug=slug)
     form = CommentForm(request.POST or None)
@@ -51,7 +51,7 @@ def detail(request, slug):
     return render(request, 'blog/detail.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def update_post(request, slug):
     blogpost = get_object_or_404(Post, slug=slug)
     form = BlogForm(request.POST or None,
@@ -66,7 +66,7 @@ def update_post(request, slug):
     return render(request, 'blog/post_update.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def post_delete(request, slug):
     blogpost = get_object_or_404(Post,  slug=slug)
     if blogpost.author == request.user:
@@ -81,7 +81,7 @@ def post_delete(request, slug):
     return render(request, 'blog/post_delete.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def like(request, slug):
     if request.method == "POST":
         obj = get_object_or_404(Post, slug=slug)

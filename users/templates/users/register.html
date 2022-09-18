@@ -3,13 +3,13 @@
 {% block blog %}
 <div class=" container row mt-2 mx-auto bg-light">
     <div class="col-md-6 offset-md-3">
-        <form action="{% url 'register' %}" method="post" class='p-4' enctype='multipart/form-data'>
+        <form action="{% url 'users:register' %}" method="post" class='p-4' enctype='multipart/form-data'>
             {% csrf_token %} 
             {{user_form|crispy}}
             <button type="submit" class="btn btn-success mb-3">Register</button>
         </form>
          <div class='m-2'>
-            Already have an account ? <a href="{% url 'login' %} " class='text-decoration-none'>Sign in</a>
+            Already have an account ? <a href="{% url 'users:login' %} " class='text-decoration-none'>Sign in</a>
         </div>
     </div>
 </div>

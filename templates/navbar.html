@@ -10,7 +10,7 @@
             <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
           <li class="d-none d-md-block nav-item">
-            <a class="nav-link" href="">About</a>
+            <a class="nav-link" href="{% url 'users:about' %}">About</a>
           </li>
         </ul>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -23,13 +23,13 @@
               <a class="d-block d-md-none nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="d-block d-md-none nav-link" href="">About</a>
+              <a class="d-block d-md-none nav-link" href="{% url 'users:about' %}">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'users:logout' %}">Logout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile' user.id %} ">Profile</a>
+                <a class="nav-link" href="{% url 'users:profile' user.id %} ">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'blog:create' %}">New Post</a>
@@ -40,13 +40,13 @@
               <a class="d-block d-md-none nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="d-block d-md-none nav-link" href="">About</a>
+              <a class="d-block d-md-none nav-link" href="{% url 'users:about' %}">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'users:login' %}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                <a class="nav-link" href="{% url 'users:register' %}">Register</a>
             </li>
         {% endif %}
         </ul>

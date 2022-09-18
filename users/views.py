@@ -51,3 +51,5 @@ def profile(request, id):
     }
     return render(request, 'users/profile.html', context)
     
+def about(request):
+    return render(request, "users/about.html")
